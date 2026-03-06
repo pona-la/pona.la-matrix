@@ -1,0 +1,3 @@
+matrix.{$DOMAIN}, matrix.{$DOMAIN}:8448 {
+	reverse_proxy http://tuwunel:8008
+}
