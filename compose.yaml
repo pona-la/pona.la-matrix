@@ -2,9 +2,11 @@ services:
   caddy:
     container_name: caddy
     image: caddy:latest
+    restart: unless-stopped
     ports:
       - 80:80
       - 443:443
+      - 8448:8448
     environment:
       DOMAIN: ${DOMAIN}
       TZ: ${TZ}
