@@ -43,7 +43,7 @@ services:
     image: ghcr.io/katharostech/ooye:master
     environment:
       SERVER_NAME: ${SERVER_NAME}
-      SERVER_ORIGIN: https://matrix.${DOMAIN}
+      SERVER_ORIGIN: http://tuwunel:8008
       ADMIN_INVITE: "@admin:pona.la"
       URL: https://bridge.${DOMAIN}
       HS_TOKEN: ${OOYE_HS_TOKEN}
