@@ -32,12 +32,12 @@ services:
         TUWUNEL_LDAP__ENABLE: true
         TUWUNEL_LDAP__URI: "ldap://lldap:3890"
         TUWUNEL_LDAP__BASE_DN: "ou=people,dc=pona,dc=la"
-        TUWUNEL_LDAP__BIND_DN: "cn=admin,dc=pona,dc=la"
+        TUWUNEL_LDAP__BIND_DN: "cn=admin,ou=people,dc=pona,dc=la"
         TUWUNEL_LDAP__BIND_PASSWORD_FILE: "/run/secrets/ldap_bind_password"
         TUWUNEL_LDAP__UID_ATTRIBUTE: "uid"
         TUWUNEL_LDAP__MAIL_ATTRIBUTE: "mail"
         TUWUNEL_LDAP__NAME_ATTRIBUTE: "cn"
-        TUWUNEL_LDAP__ADMIN_FILTER: "(memberOf=cn=matrix_admins,ou=groups,dc=pona,dc=la)"
+        TUWUNEL_LDAP__ADMIN_FILTER: "(memberOf=cn=matrix_admin,ou=groups,dc=pona,dc=la)"
     secrets:
       - ldap_bind_password
   lldap:
