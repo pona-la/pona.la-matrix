@@ -10,3 +10,10 @@ echo '"'
 /bin/echo -n 'LDAP_KEY_SEED="'
 print_random
 echo '"'
+
+/bin/echo -n 'OOYE_HS_TOKEN="'
+dd if=/dev/urandom bs=32 count=1 2> /dev/null | basenc --base16 | dd conv=lcase 2> /dev/null
+echo '"'
+/bin/echo -n 'OOYE_HS_TOKEN="'
+dd if=/dev/urandom bs=32 count=1 2> /dev/null | basenc --base16 | dd conv=lcase 2> /dev/null
+echo '"'

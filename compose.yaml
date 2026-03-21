@@ -14,7 +14,6 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy-data:/data
       - caddy-config:/config
-
   tuwunel:
     container_name: tuwunel
     image: jevolk/tuwunel:latest
@@ -40,6 +39,18 @@ services:
         TUWUNEL_LDAP__ADMIN_FILTER: "(memberOf=cn=matrix_admin,ou=groups,dc=pona,dc=la)"
     secrets:
       - ldap_bind_password
+  ooye:
+    image: ghcr.io/katharostech/ooye:master
+    environment:
+      SERVER_NAME: ${SERVER_NAME}
+      SERVER_ORIGIN: https://bridge.${DOMAIN}
+      ADMIN_INVITE: "@admin:pona.la"
+      URL: https://bridge.${DOMAIN}
+      HS_TOKEN: ${OOYE_HS_TOKEN}
+      AS_TOKEN: ${OOYE_AS_TOKEN}
+      DISCORD_TOKEN: ${OOYE_BOT_TOKEN}
+    volumes:
+      - ooye-data:/data
   lldap:
     image: lldap/lldap:stable
     volumes:
@@ -62,6 +73,7 @@ volumes:
   caddy-config:
   tuwunel-data:
   lldap-data:
+  ooye-data:
 
 networks:
   tuwunel-caddy:

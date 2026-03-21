@@ -10,3 +10,8 @@ matrix.{$DOMAIN}, matrix.{$DOMAIN}:8448 {
 id.{$DOMAIN} {
 	reverse_proxy http://lldap:17170
 }
+
+bridge.${DOMAIN} {
+	encode gzip
+	reverse_proxy http://ooye:6693
+}
