@@ -2,7 +2,6 @@ matrix.{$DOMAIN}, matrix.{$DOMAIN}:8448 {
 	header {
 		Access-Control-Allow-Headers *
 		Access-Control-Allow-Methods *
-		Access-Control-Allow-Origin *
 	}
 
 	reverse_proxy http://tuwunel:8008
