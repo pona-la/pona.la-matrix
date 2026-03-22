@@ -1,4 +1,4 @@
-# pona.la matrix home server
+# pona.la matrix home server & id stack
 
 What it says on the package. This repo contains configuration & styling for pona.la matrix home server .
 
