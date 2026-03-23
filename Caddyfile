@@ -1,4 +1,4 @@
-matrix.{$DOMAIN}, matrix.{$DOMAIN}:8448 {
+matrix.{$BACKEND_DOMAIN}, matrix.{$BACKEND_DOMAIN}:8448 {
 	header {
 		Access-Control-Allow-Headers *
 		Access-Control-Allow-Methods *
@@ -11,7 +11,7 @@ id.{$DOMAIN} {
 	reverse_proxy http://lldap:17170
 }
 
-bridge.{$DOMAIN} {
+bridge.{$BACKEND_DOMAIN} {
 	encode gzip
 	reverse_proxy http://ooye:6693
 }
