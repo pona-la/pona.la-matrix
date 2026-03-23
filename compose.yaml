@@ -17,8 +17,6 @@ services:
   mail:
     image: bytemark/smtp
     restart: always
-    ports:
-      - "25:25"
     environment:
       MAILNAME: ${DOMAIN}
 
