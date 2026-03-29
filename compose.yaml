@@ -14,12 +14,6 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy-data:/data
       - caddy-config:/config
-  mail:
-    image: bytemark/smtp
-    restart: always
-    environment:
-      MAILNAME: ${DOMAIN}
-
   tuwunel:
     container_name: tuwunel
     image: jevolk/tuwunel:latest
@@ -45,6 +39,8 @@ services:
         TUWUNEL_LDAP__ADMIN_FILTER: "(memberOf=cn=matrix_admin,ou=groups,dc=pona,dc=la)"
     secrets:
       - ldap_bind_password
+    depends_on:
+      - lldap
   ooye:
     image: ghcr.io/katharostech/ooye:master
     environment:
@@ -70,14 +66,14 @@ services:
       LLDAP_KEY_FILE: ""
 
       LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET: true
-      LLDAP_SMTP_OPTIONS__SERVER: mail
-      LLDAP_SMTP_OPTIONS__PORT: 25
-      LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION: NONE
-      LLDAP_SMTP_OPTIONS__FROM: no-reply <no-reply@${DOMAIN}>
-      LLDAP_SMTP_OPTIONS__TO: Nikolas Lehto <nikolas@testausserveri.fi>
-    command: "send_test_email --to=nikolas@testausserveri.fi --verbose"
-    depends_on:
-      - mail
+      LLDAP_SMTP_OPTIONS__SERVER: mail.osphost.net
+      LLDAP_SMTP_OPTIONS__PORT: 465
+      
+      LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION: TLS
+      LLDAP_SMTP_OPTIONS__USER: noreply@mi.${DOMAIN}
+      LLDAP_SMTP_OPTIONS__PASSWORD: ${SMTP_PASSWORD}
+      LLDAP_SMTP_OPTIONS__FROM: o toki ala tawa mi <no-reply@$mi.{DOMAIN}>
+      LLDAP_SMTP_OPTIONS__TO: lawa pi mi pona <nikolas@testausserveri.fi>
 
 # This stores the LDAP password as a file in the tuwunel container as required by tuwunel's LDAP configuration.
 secrets:
@@ -90,6 +86,3 @@ volumes:
   tuwunel-data:
   lldap-data:
   ooye-data:
-
-networks:
-  tuwunel-caddy:
