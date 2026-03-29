@@ -72,7 +72,7 @@ services:
       LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION: TLS
       LLDAP_SMTP_OPTIONS__USER: noreply@mi.${DOMAIN}
       LLDAP_SMTP_OPTIONS__PASSWORD: ${SMTP_PASSWORD}
-      LLDAP_SMTP_OPTIONS__FROM: o toki ala tawa mi <no-reply@$mi.{DOMAIN}>
+      LLDAP_SMTP_OPTIONS__FROM: o toki ala tawa mi <no-reply@mi.${DOMAIN}>
       LLDAP_SMTP_OPTIONS__TO: lawa pi mi pona <nikolas@testausserveri.fi>
 
 # This stores the LDAP password as a file in the tuwunel container as required by tuwunel's LDAP configuration.
