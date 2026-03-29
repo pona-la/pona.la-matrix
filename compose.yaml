@@ -9,6 +9,7 @@ services:
       - 8448:8448
     environment:
       DOMAIN: ${DOMAIN}
+      BACKEND_DOMAIN: ${BACKEND_DOMAIN}
       TZ: ${TZ}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
