@@ -7,7 +7,7 @@ matrix.{$BACKEND_DOMAIN}, matrix.{$BACKEND_DOMAIN}:8448 {
 	reverse_proxy http://tuwunel:8008
 }
 
-id.{$DOMAIN} {
+mi.{$DOMAIN} {
 	reverse_proxy http://lldap:17170
 }
 
