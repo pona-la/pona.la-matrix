@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        
+        <meta name="description" content="Register for mi pona">
+        <meta name="keywords" content="mi pona, toki pona, pona.la, identity provider, authentication, register">
+        <meta name="author" content="soko Nikolasu">
+
+        <meta property="og:title" content="Register - mi pona">
+        <meta property="og:description" content="Register for mi pona">
+        <meta property="og:url" content="https://mi.pona.la/register/">
+        <meta property="og:type" content="website">
+
+        <title>Register - mi pona</title>
+
+        <style>
+            nav a,
+            aside a {
+                color: currentColor;
+                text-decoration: none;
+                margin-right: 1rem;
+            }
+
+            nav a:hover,
+            aside a:hover {
+                text-decoration: underline;
+            }
+
+            input, form button {
+                padding: 0.5rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            form button {
+                margin-top: 1rem;
+                cursor: pointer;
+            }
+        </style>
+
+    </head>
+
+    <body style="width: min(100%, 800px); margin: 4rem auto; font-size: 1.25rem;">
+        <a href="/" style="color: currentColor; text-decoration: none;">
+            <header style="position: relative;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="35 0 125 175" style="height: 72px;">
+                    <path fill="none" stroke="#000" stroke-width="13" d="M61.5 67.8C56.1 17 114 20.1 114 49.5" />
+                    <path fill="#c3c3c3" stroke="#000" stroke-width="12"
+                        d="M56.2 65.5h62.6a10 10 0 0 1 10 10v62.6a10 10 0 0 1-10 10H56.2a10 10 0 0 1-10-10V75.5a10 10 0 0 1 10-10Z" />
+                    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"
+                        d="M66.6 102.3c0 26.2 41.8 26.2 41.8 0" />
+                </svg>
+                <h1 style="display: inline; position: absolute; top: 0.75rem; font-size: 3rem; margin: 0;">mi pona</h1>
+            </header>
+        </a>
+        <nav>
+            <p>
+                <a href="/login">Log in</a>
+                <a href="/register/">Register</a>
+                <a href="/reset-password/step1">Reset Password</a>
+                <a href="mailto:lawa@mi.pona.la">Contact</a>
+            </p>
+            <hr>
+        </nav>
+        <main>
+            {{ block "content" . }}{{ end }}
+        </main>
+        <footer>
+            <hr>
+            <p style="text-align: center;">
+                Made by soko Nikolasu. This software is public domain under the <a href="https://unlicense.org/">Unlicense</a>.
+            </p>
+        </footer>
+    </body>
+
+</html>

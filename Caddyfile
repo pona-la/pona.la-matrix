@@ -8,7 +8,28 @@ matrix.{$BACKEND_DOMAIN}, matrix.{$BACKEND_DOMAIN}:8448 {
 }
 
 mi.{$DOMAIN} {
-	reverse_proxy http://lldap:17170
+	# Serve the landing page from the root path
+	handle_path / {
+		root * /srv/www
+		file_server
+	}
+
+	handle_path /robots.txt {
+		# Weird formatting is intentional
+		respond "user-agent: *
+Allow: /$
+Disallow: /
+"
+	}
+
+	handle_path /register/ {
+		reverse_proxy http://lldap-reg:8080
+	}
+
+	# Route all other requests to the lldap service
+	handle {
+		reverse_proxy http://lldap:17170
+	}
 }
 
 bridge.{$BACKEND_DOMAIN} {

@@ -13,6 +13,7 @@ services:
       TZ: ${TZ}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./landing-page.html:/srv/www/index.html:ro
       - caddy-data:/data
       - caddy-config:/config
   tuwunel:
@@ -76,6 +77,21 @@ services:
 
       LLDAP_SMTP_OPTIONS__FROM: o toki ala tawa mi <no-reply@mi.${DOMAIN}>
       LLDAP_SMTP_OPTIONS__TO: lawa pi mi pona <lawa@mi.${DOMAIN}>
+  lldap-reg:
+    container_name: lldap-reg
+    build:
+      context: .
+      dockerfile: Containerfile
+    environment:
+      LLDAP_URL: http://lldap:17170
+      LLDAP_USER: admin
+      LLDAP_PASS: ${LDAP_ADMIN_PASS}
+      REGISTER_PATH: /register/
+      
+    depends_on:
+      - lldap
+    restart: unless-stopped
+
 
 # This stores the LDAP password as a file in the tuwunel container as required by tuwunel's LDAP configuration.
 secrets:
