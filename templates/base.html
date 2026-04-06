@@ -5,16 +5,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
         
-        <meta name="description" content="Register for mi pona">
-        <meta name="keywords" content="mi pona, toki pona, pona.la, identity provider, authentication, register">
+        <!--SEO-->
+        <meta name="description" content="The identity provider and authentication system for the pona.la ecosystem. Log in, register, and manage your account.">
+        <meta name="keywords" content="mi pona, toki pona, pona.la, identity provider, authentication, login, register, password reset">
         <meta name="author" content="soko Nikolasu">
 
-        <meta property="og:title" content="Register - mi pona">
-        <meta property="og:description" content="Register for mi pona">
-        <meta property="og:url" content="https://mi.pona.la/register/">
+        <!--Open Graph-->
+        <meta property="og:title" content="mi pona">
+        <meta property="og:description" content="The identity provider and authentication system for the pona.la ecosystem. Log in, register, and manage your account.">
+        <meta property="og:image" content="https://mi.pona.la/register/static/og-image.png?v=20260403">
+        <meta property="og:url" content="https://mi.pona.la">
         <meta property="og:type" content="website">
 
+        <!--Favicon-->
+        <link rel="icon" type="image/png" href="/register/static/favicon-96x96.png?v=20260403" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/register/static/favicon.svg?v=20260403" />
+        <link rel="shortcut icon" href="/register/static/favicon.ico?v=20260403" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/register/static/apple-touch-icon.png?v=20260403" />
+        <meta name="apple-mobile-web-app-title" content="mi pona" />
+        <link rel="manifest" href="/register/static/site.webmanifest?v=20260403" />
+
         <title>Register - mi pona</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 
         <style>
             nav a,
@@ -33,33 +48,37 @@
                 padding: 0.5rem;
                 width: 100%;
                 box-sizing: border-box;
+                margin-bottom: 0.5rem;
             }
             
             form button {
-                margin-top: 1rem;
                 cursor: pointer;
+            }
+
+            label {
+                font-size: 1rem;
             }
         </style>
 
     </head>
 
-    <body style="width: min(100%, 800px); margin: 4rem auto; font-size: 1.25rem;">
+    <body style="width: min(100%, 800px); margin: 4rem auto; font-size: 1.25rem; font-family: 'Nunito', sans-serif;">
         <a href="/" style="color: currentColor; text-decoration: none;">
             <header style="position: relative;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="35 0 125 175" style="height: 72px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="35 0 140 175" style="height: 72px;">
                     <path fill="none" stroke="#000" stroke-width="13" d="M61.5 67.8C56.1 17 114 20.1 114 49.5" />
                     <path fill="#c3c3c3" stroke="#000" stroke-width="12"
                         d="M56.2 65.5h62.6a10 10 0 0 1 10 10v62.6a10 10 0 0 1-10 10H56.2a10 10 0 0 1-10-10V75.5a10 10 0 0 1 10-10Z" />
                     <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"
                         d="M66.6 102.3c0 26.2 41.8 26.2 41.8 0" />
                 </svg>
-                <h1 style="display: inline; position: absolute; top: 0.75rem; font-size: 3rem; margin: 0;">mi pona</h1>
+                <h1 style="display: inline; position: absolute; top: 0.75rem; font-size: 2.7rem; margin: 0;">mi pona</h1>
             </header>
         </a>
         <nav>
             <p>
                 <a href="/login">Log in</a>
-                <a href="/register/">Register</a>
+                <a href="/register">Register</a>
                 <a href="/reset-password/step1">Reset Password</a>
                 <a href="mailto:lawa@mi.pona.la">Contact</a>
             </p>

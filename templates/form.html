@@ -1,16 +1,15 @@
 {{ define "content" }}
 <h2>Register</h2>
+<p>
+    Create a mi pona account. Your username can only contain letters, numbers, underscores, and hyphens.
+    After you register, you will get an email with a link to set your password and log in.
+    If you don't receive the email within a few minutes, please check your spam folder.
+</p>
 <form method="post">
-    <p>
-        <label for="username">Username: (no spaces)</label><br>
-        <input type="text" id="username" name="username" placeholder="jan pona" required>
-    </p>
-    <p>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" placeholder="jan.pona@example.com" required>
-    </p>
-    <p>
-        <button type="submit">Register</button>
-    </p>
+    <label for="username">Username: (no spaces)</label><br>
+    <input type="text" id="username" name="username" placeholder="jan pona" required>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" placeholder="jan.pona@example.com" required>
+    <button type="submit">Register</button>
 </form>
 {{ end }}

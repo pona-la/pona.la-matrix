@@ -17,6 +17,9 @@ import (
 //go:embed templates
 var templates embed.FS
 
+//go:embed static
+var staticFiles embed.FS
+
 func validateEmail(email string) bool {
 	emailRegex := regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
 	return emailRegex.MatchString(email)
@@ -219,7 +222,7 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		exists, err := checkUserExists(username, email)
 		if err != nil {
 			log.Printf("Error checking user: %v", err)
-			showError(w, "Internal Server Error")
+			showError(w, "Internal Server Error\nPlease contact soko Nikolasu using the link on the navigation bar.")
 			return
 		}
 		if exists {
@@ -271,6 +274,10 @@ func main() {
 	}
 
 	http.HandleFunc(registerPath, registerHandler)
-	log.Printf("Starting server on http://0.0.0.0:%s, registration path %s", port, registerPath)
+	http.Handle(registerPath+"static/", http.StripPrefix(
+		registerPath+"static/",
+		http.FileServer(http.FS(staticFiles)),
+	))
+	log.Printf("Starting server on http://0.0.0.0:%s%s", port, registerPath)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
