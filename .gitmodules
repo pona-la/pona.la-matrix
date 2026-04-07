@@ -1,0 +1,3 @@
+[submodule "lldap-mi-pona"]
+	path = lldap-mi-pona
+	url = https://github.com/pona-la/lldap-mi-pona.git
