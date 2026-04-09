@@ -151,7 +151,7 @@ func resetPassword(userId string) error {
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
-		return fmt.Errorf("status %d", resp.StatusCode)
+		return fmt.Errorf("status %d", resp.Status)
 	}
 	return nil
 }
@@ -232,13 +232,13 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		err = createUser(username, email)
 		if err != nil {
 			log.Printf("Error creating user: %v", err)
-			showError(w, "Internal Server Error")
+			showError(w, "Internal Server Error\nPlease contact soko Nikolasu using the link on the navigation bar.")
 			return
 		}
 		err = resetPassword(username)
 		if err != nil {
 			log.Printf("Error resetting password: %v", err)
-			showError(w, "Internal Server Error")
+			showError(w, "Internal Server Error\nPlease contact soko Nikolasu using the link on the navigation bar.")
 			return
 		}
 		showSuccess(w)

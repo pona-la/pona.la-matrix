@@ -37,7 +37,7 @@ services:
         TUWUNEL_LDAP__BIND_PASSWORD_FILE: "/run/secrets/ldap_bind_password"
         TUWUNEL_LDAP__UID_ATTRIBUTE: "uid"
         TUWUNEL_LDAP__MAIL_ATTRIBUTE: "mail"
-        TUWUNEL_LDAP__NAME_ATTRIBUTE: "cn"
+        TUWUNEL_LDAP__NAME_ATTRIBUTE: "display_name"
         TUWUNEL_LDAP__ADMIN_FILTER: "(memberOf=cn=matrix_admin,ou=groups,dc=pona,dc=la)"
     secrets:
       - ldap_bind_password
@@ -58,11 +58,17 @@ services:
       - ooye-data:/data
   lldap:
     container_name: lldap
-    image: lldap/lldap:stable
+    build:
+      context: ./lldap-mi-pona
+      dockerfile: Dockerfile
+    restart: unless-stopped
     volumes:
       - "lldap-data:/data"
     environment:
       TZ: ${TZ}
+      UID: 1000
+      GID: 1000
+
       LLDAP_JWT_SECRET: ${LDAP_JWT_SECRET}
       LLDAP_KEY_SEED: ${LDAP_KEY_SEED}
       LLDAP_LDAP_BASE_DN: dc=pona,dc=la
