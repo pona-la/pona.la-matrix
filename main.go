@@ -151,7 +151,7 @@ func resetPassword(userId string) error {
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
-		return fmt.Errorf("status %d", resp.Status)
+		return fmt.Errorf("status %s", resp.Status)
 	}
 	return nil
 }
