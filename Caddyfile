@@ -29,3 +29,7 @@ bridge.{$BACKEND_DOMAIN} {
 	encode gzip
 	reverse_proxy http://ooye:6693
 }
+
+logs.{$BACKEND_DOMAIN} {
+	reverse_proxy http://dozzle:8080
+}

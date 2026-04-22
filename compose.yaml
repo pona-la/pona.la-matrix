@@ -99,7 +99,13 @@ services:
     depends_on:
       - lldap
     restart: unless-stopped
-
+  dozzle:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dozzle-data:/data
+    environment:
+      DOZZLE_HOSTNAME: ${SERVER_NAME}
+    image: amir20/dozzle:latest
 
 # This stores the LDAP password as a file in the tuwunel container as required by tuwunel's LDAP configuration.
 secrets:
@@ -112,3 +118,4 @@ volumes:
   tuwunel-data:
   lldap-data:
   ooye-data:
+  dozzle-data:
