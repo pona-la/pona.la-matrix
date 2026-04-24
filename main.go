@@ -9,8 +9,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"net/mail"
 	"os"
-	"regexp"
 	"strings"
 )
 
@@ -21,8 +21,8 @@ var templates embed.FS
 var staticFiles embed.FS
 
 func validateEmail(email string) bool {
-	emailRegex := regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
-	return emailRegex.MatchString(email)
+	parsed, err := mail.ParseAddress(email)
+	return err == nil && parsed.Address == email
 }
 
 func getToken() (string, error) {
