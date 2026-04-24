@@ -222,7 +222,7 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		exists, err := checkUserExists(username, email)
 		if err != nil {
 			log.Printf("Error checking user: %v", err)
-			showError(w, "Internal Server Error\nPlease contact soko Nikolasu using the link on the navigation bar.")
+			showError(w, "Internal Server Error\nPlease contact soko Ni using the link on the navigation bar.")
 			return
 		}
 		if exists {
@@ -232,13 +232,13 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 		err = createUser(username, email)
 		if err != nil {
 			log.Printf("Error creating user: %v", err)
-			showError(w, "Internal Server Error\nPlease contact soko Nikolasu using the link on the navigation bar.")
+			showError(w, "Internal Server Error\nPlease contact soko Ni using the link on the navigation bar.")
 			return
 		}
 		err = resetPassword(username)
 		if err != nil {
 			log.Printf("Error resetting password: %v", err)
-			showError(w, "Internal Server Error\nPlease contact soko Nikolasu using the link on the navigation bar.")
+			showError(w, "Internal Server Error\nPlease contact soko Ni using the link on the navigation bar.")
 			return
 		}
 		showSuccess(w)
