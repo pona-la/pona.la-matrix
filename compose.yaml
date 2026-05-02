@@ -19,9 +19,13 @@ services:
   dex:
     restart: unless-stopped
     container_name: dex
-    image: dexidp/dex:latest
+    image: dexidp/dex:latest-distroless
+    environment:
+      LDAP_ADMIN_PASS: ${LDAP_ADMIN_PASS}
+      ILO_KITO: ${ILO_KITO}
     volumes:
       - ./dex.config.yaml:/etc/dex/config.docker.yaml
+      - dex-data:/data
   tuwunel:
     container_name: tuwunel
     image: jevolk/tuwunel:latest
@@ -33,7 +37,7 @@ services:
         TUWUNEL_TRUSTED_SERVERS: '["matrix.org"]'
         TUWUNEL_FORGET_FORCED_UPON_LEAVE: true
         TUWUNEL_LOCKDOWN_PUBLIC_ROOM_DIRECTORY: true
-        TUWUNEL_ALLOW_ROOM_CREATION: false
+        TUWUNEL_ALLOW_PUBLIC_ROOM_DIRECTORY_OVER_FEDERATION: true
         TUWUNEL_ADDRESS: 0.0.0.0
 
         TUWUNEL_LDAP__ENABLE: true
@@ -50,18 +54,13 @@ services:
     depends_on:
       - lldap
   ooye:
+    image: sim2kid/ooye-docker:latest
     container_name: ooye
-    image: ghcr.io/katharostech/ooye:master
-    environment:
-      SERVER_NAME: ${SERVER_NAME}
-      SERVER_ORIGIN: http://tuwunel:8008
-      ADMIN_INVITE: "@admin:pona.la"
-      URL: https://bridge.${BACKEND_DOMAIN}
-      HS_TOKEN: ${OOYE_HS_TOKEN}
-      AS_TOKEN: ${OOYE_AS_TOKEN}
-      DISCORD_TOKEN: ${OOYE_BOT_TOKEN}
+    restart: unless-stopped
+    ports:
+      - "6693:6693"
     volumes:
-      - ooye-data:/data
+      - ./ooye:/data
   lldap:
     container_name: lldap
     build:
@@ -106,12 +105,14 @@ services:
       - lldap
     restart: unless-stopped
   dozzle:
+    container_name: dozzle
+    restart: unless-stopped
+    image: amir20/dozzle:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - dozzle-data:/data
     environment:
       DOZZLE_HOSTNAME: ilo suli
-    image: amir20/dozzle:latest
 
 # This stores the LDAP password as a file in the tuwunel container as required by tuwunel's LDAP configuration.
 secrets:
@@ -125,3 +126,4 @@ volumes:
   lldap-data:
   ooye-data:
   dozzle-data:
+  dex-data:

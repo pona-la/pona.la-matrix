@@ -7,7 +7,7 @@ storage:
 
 # HTTP service configuration
 web:
-  http: 127.0.0.1:5556
+  http: 0.0.0.0:5556
   # Dex UI configuration
   # frontend:
   issuer: mi pona
