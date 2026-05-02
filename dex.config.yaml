@@ -27,7 +27,7 @@ staticClients:
     id: ilo-kito
     secretEnv: ILO_KITO
     redirectURIs:
-      - 'https://kito.pona.la/user/oauth2/mi%20pona/callback'
+      - 'https://kito.pona.la/user/oauth2/mi.pona.la/callback'
 
 
 connectors:
