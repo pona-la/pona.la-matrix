@@ -18,20 +18,16 @@ web:
 logger:
   level: "info"
   format: "json"
+  # TODO: Consider excluding certain fields for GDPR compliance.
   # Drop these attribute keys from all log output (useful for GDPR/PII suppression).
   #excludeFields: [email, username, preferred_username, groups]
 
-# Static clients registered in Dex by default.
-#
-# Alternatively, clients may be added through the gRPC API.
-# staticClients:
-#   # Example using environment variables
-#   # These fields are mutually exclusive with id and secret respectively.
-#   - idEnv: DEX_CLIENT_ID
-#     secretEnv: DEX_CLIENT_SECRET
-#     redirectURIs:
-#       - 'https://app.example.com/callback'
-#     name: 'Production App'
+staticClients:
+  - name: 'ilo Kito'
+    id: ilo-kito
+    secretEnv: ILO_KITO
+    redirectURIs:
+      - 'https://kito.pona.la/user/oauth2/mi%20pona/callback'
 
 
 connectors:
