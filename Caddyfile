@@ -23,7 +23,12 @@ Disallow: /
 
 	# Dex UI and OIDC discovery
 	reverse_proxy /dex* http://dex:5556
-	reverse_proxy /.well-known/openid-configuration http://dex:5556
+	# probably a bug in dex that it doesn't serve the OAuth discovery
+	# API at the expected path, so we need to rewrite it
+	handle_path /.well-known/openid-configuration {
+		rewrite * /dex/.well-known/openid-configuration
+		reverse_proxy http://dex:5556
+	}
 
 	# Route all other requests to the lldap service
 	reverse_proxy http://lldap:17170
