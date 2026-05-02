@@ -20,6 +20,7 @@ Disallow: /
 "
 
 	reverse_proxy /register* http://lldap-reg:8080
+	reverse_proxy /dex* http://dex:5556
 
 	# Route all other requests to the lldap service
 	reverse_proxy http://lldap:17170
