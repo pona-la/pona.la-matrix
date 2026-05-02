@@ -38,17 +38,17 @@ connectors:
       host: lldap:3890
       insecureNoSSL: true
       insecureSkipVerify: true
-      bindDN: uid=admin,ou=people,dc=mi,dc=pona,dc=la
+      bindDN: uid=admin,ou=people,dc=pona,dc=la
       bindPW: $LDAP_ADMIN_PASS
       userSearch:
-        baseDN: ou=people,dc=mi,dc=pona,dc=la
+        baseDN: ou=people,dc=pona,dc=la
         username: uid
         idAttr: uid
         emailAttr: mail
         nameAttr: displayName
         preferredUsernameAttr: uid
       groupSearch:
-        baseDN: ou=groups,dc=mi,dc=pona,dc=la
+        baseDN: ou=groups,dc=pona,dc=la
         filter: "(objectClass=groupOfUniqueNames)"
         userMatchers:
           - userAttr: DN
