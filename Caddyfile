@@ -28,8 +28,8 @@ Disallow: /
 	}
 
 	# Serve the static files for the registration page
-	handle_path /static/* {
-		uri strip_prefix /static
+	handle_path /assets/* {
+		uri strip_prefix /assets
 		root * /srv/www/static
 		file_server
 	}
