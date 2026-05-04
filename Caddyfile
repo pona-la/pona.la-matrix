@@ -19,7 +19,13 @@ Allow: /$
 Disallow: /
 "
 
-	reverse_proxy /register* http://lldap-reg:8080
+	# Registration is a route protected by anubis, which will forward the request to the lldap-reg service
+	# within.website is anubis's own route
+	@anubis path /register* /.within.website*
+	reverse_proxy @anubis http://anubis:3000 {
+		header_up X-Real-Ip {remote_host}
+		header_up X-Http-Version {http.request.proto}
+	}
 
 	# Dex UI and OIDC discovery
 	reverse_proxy /dex* http://dex:5556

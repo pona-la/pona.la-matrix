@@ -156,7 +156,7 @@ func resetPassword(userId string) error {
 	return nil
 }
 
-func showError(w http.ResponseWriter, msg string) {
+func showError(w http.ResponseWriter, msg template.HTML) {
 	template, err := template.ParseFS(templates, "templates/base.html", "templates/error.html")
 	if err != nil {
 		log.Printf("Error while parsing template: %s", err)
@@ -203,6 +203,11 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 	case "POST":
 		if err := r.ParseForm(); err != nil {
 			showError(w, "Invalid form")
+			return
+		}
+		pali := strings.ToLower(strings.TrimSpace(r.FormValue("pali")))
+		if pali != "ni" {
+			showError(w, `Please answer the spam prevention question correctly to prevent spam. Notice that you must answer with just the <a href="https://sona.pona.la/wiki/Names">proper adjective</a>.`)
 			return
 		}
 		username := strings.TrimSpace(r.FormValue("username"))

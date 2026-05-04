@@ -104,6 +104,15 @@ services:
     depends_on:
       - lldap
     restart: unless-stopped
+  anubis:
+    image: ghcr.io/techarohq/anubis:latest
+    restart: unless-stopped
+    container_name: anubis
+    depends_on:
+      - lldap-reg
+    environment:
+      BIND: ":3000"
+      TARGET: http://lldap-reg:8080
   dozzle:
     container_name: dozzle
     restart: unless-stopped
