@@ -20,6 +20,8 @@ services:
     restart: unless-stopped
     container_name: dex
     image: dexidp/dex:latest-distroless
+    depends_on:
+      - lldap
     environment:
       LDAP_ADMIN_PASS: ${LDAP_ADMIN_PASS}
       ILO_KITO: ${ILO_KITO}
@@ -57,6 +59,8 @@ services:
     image: sim2kid/ooye-docker:latest
     container_name: ooye
     restart: unless-stopped
+    depends_on:
+      - tuwunel
     ports:
       - "6693:6693"
     volumes:
