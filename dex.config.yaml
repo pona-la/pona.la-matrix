@@ -8,8 +8,6 @@ storage:
 # HTTP service configuration
 web:
   http: 0.0.0.0:5556
-  # Dex UI configuration
-  # frontend:
   issuer: mi pona
   logoURL: /register/static/logo.png
   dir: ""
@@ -18,9 +16,8 @@ web:
 logger:
   level: "info"
   format: "json"
-  # TODO: Consider excluding certain fields for GDPR compliance.
-  # Drop these attribute keys from all log output (useful for GDPR/PII suppression).
-  #excludeFields: [email, username, preferred_username, groups]
+  # These are excluded for GDPR compliance.
+  excludeFields: [email, username, preferred_username, groups]
 
 staticClients:
   - name: 'ilo Kito'
