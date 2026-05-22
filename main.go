@@ -206,8 +206,8 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		pali := strings.ToLower(strings.TrimSpace(r.FormValue("pali")))
-		if pali != "ni" {
-			showError(w, `Please answer the spam prevention question correctly to prevent spam. Notice that you must answer with just the <a href="https://sona.pona.la/wiki/Names">proper adjective</a>.`)
+		if pali != "ni" && pali != "soko Ni" {
+			showError(w, "Please answer the spam prevention question correctly to prevent spam.")
 			return
 		}
 		username := strings.TrimSpace(r.FormValue("username"))
@@ -254,7 +254,6 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	// Ensure required environment variables are set
-	// Yes i know it could've been three more clear lines. DRY or something shut up man get a job.
 	requiredEnv := []string{"LLDAP_URL", "LLDAP_USER", "LLDAP_PASS"}
 	for _, env := range requiredEnv {
 		if os.Getenv(env) == "" {
@@ -267,6 +266,7 @@ func main() {
 		port = "8080"
 	}
 
+	// Ensure that registerPath starts and ends with slashes.
 	registerPath := os.Getenv("REGISTER_PATH")
 	if registerPath == "" {
 		registerPath = "/"
@@ -279,10 +279,13 @@ func main() {
 	}
 
 	http.HandleFunc(registerPath, registerHandler)
-	http.Handle(registerPath+"static/", http.StripPrefix(
-		registerPath+"static/",
-		http.FileServer(http.FS(staticFiles)),
-	))
+	http.HandleFunc("/status", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		_, err := w.Write([]byte("OK"))
+		if err != nil {
+			log.Printf("Error writing status response: %v", err)
+		}
+	})
 	log.Printf("Starting server on http://0.0.0.0:%s%s", port, registerPath)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
