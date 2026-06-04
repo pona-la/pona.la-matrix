@@ -31,7 +31,7 @@ services:
       - dex-data:/data
   tuwunel:
     container_name: tuwunel
-    image: jevolk/tuwunel:latest
+    image: ghcr.io/matrix-construct/tuwunel:latest
     restart: unless-stopped
     volumes:
         - tuwunel-data:/var/lib/tuwunel
