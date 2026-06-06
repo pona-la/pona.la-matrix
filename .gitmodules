@@ -1,3 +1,6 @@
 [submodule "lldap-mi-pona"]
 	path = lldap-mi-pona
 	url = https://github.com/pona-la/lldap-mi-pona.git
+[submodule "ooye-docker"]
+	path = ooye-docker
+	url = https://github.com/sim2kid/ooye-docker.git

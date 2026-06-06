@@ -58,7 +58,12 @@ services:
     depends_on:
       - lldap
   ooye:
-    image: sim2kid/ooye-docker:latest
+    # image: sim2kid/ooye-docker:latest
+    build:
+      context: ./ooye-docker
+      dockerfile: Dockerfile
+      args:
+        OOYE_VERSION: main
     container_name: ooye
     restart: unless-stopped
     depends_on:
